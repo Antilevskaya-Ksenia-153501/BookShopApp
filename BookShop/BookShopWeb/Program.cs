@@ -1,3 +1,6 @@
+using BookShopWeb.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace BookShopWeb
 {
     public class Program
@@ -8,6 +11,9 @@ namespace BookShopWeb
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<AppDbContext>(options=>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+               
 
             var app = builder.Build();
 
